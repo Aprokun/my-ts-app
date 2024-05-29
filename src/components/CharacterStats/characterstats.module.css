@@ -1,0 +1,17 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	background-color: #2B2A33;
+	padding: 0.5rem;
+	border-radius: 1rem;
+	color: "#F0F0F0F";
+	font-weight: 600;
+	margin-top: 1rem;
+}
+
+p {
+	display: flex;
+	justify-content: space-between;
+	margin: 5px 0px;
+	color: #F0F0F0;
+}
