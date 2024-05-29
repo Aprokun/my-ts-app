@@ -51,6 +51,7 @@ export const CharacterSkillList: FC<CharacterSkillListProps> = ({character, onSk
 							name={skill.key}
 							value={character.skills[skill.key]}
 							onChange={(e) => handleInput(e, skill.attribute as keyof ICharacterParameters)}
+							min={0}
 							max={5}
 						/>
 					</label>
