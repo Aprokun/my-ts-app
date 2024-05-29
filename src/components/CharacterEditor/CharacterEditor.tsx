@@ -39,7 +39,7 @@ export const CharacterEditor: FC = () => {
 
 	const onUpdateCharacter = (character: ICharacter) => {
 		const updatedHealth = 3 + Number(character.parameters.strength)
-		console.log('updated health - ', updatedHealth)
+		
 		setCharacter({
 			...character,
 			additionalParameters: {
@@ -101,14 +101,10 @@ export const CharacterEditor: FC = () => {
 
 	const onDamaged = () => {
 
-		console.log('health before - ', character.currentHealth)
-
 		setCharacter(prevCharacter => ({
 			...prevCharacter,
 			currentHealth: Math.max(prevCharacter.currentHealth - 1, 0)
 		}))
-
-		console.log('health after - ', character.currentHealth)
 	}
 
 	return (
