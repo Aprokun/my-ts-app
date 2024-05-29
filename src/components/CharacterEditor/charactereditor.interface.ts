@@ -19,5 +19,6 @@ export interface ICharacter {
 	name: string,
 	parameters: ICharacterParameters,
 	additionalParameters: ICharacterAdditionalParameters,
-	skills: ICharacterSkills
+	skills: ICharacterSkills,
+	currentHealth: number
 }

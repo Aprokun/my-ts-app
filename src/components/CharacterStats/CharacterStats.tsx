@@ -3,12 +3,12 @@ import { ICharacterParameters } from '../CharacterEditor/charactereditor.interfa
 import styles from './characterstats.module.css'
 
 type CharacterStatsProps = {
-	parameters: ICharacterParameters
+	parameters: ICharacterParameters,
+	health: number
 }
 
-export const CharacterStats: FC<CharacterStatsProps> = ({parameters}) => {
+export const CharacterStats: FC<CharacterStatsProps> = ({parameters, health}) => {
 
-	const health = 3 + Number(parameters.strength);
   	const dodge = 10 + Number(parameters.agility);
   	const energy = Number(parameters.agility) + Number(parameters.intelligence);
 

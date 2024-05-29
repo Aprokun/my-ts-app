@@ -29,14 +29,26 @@ const initCharacter: ICharacter = {
 		insight: 0,
 		appearance: 0,
 		manipulation: 0
-	}
+	},
+	currentHealth: 0
 }
 
 export const CharacterEditor: FC = () => {
 
 	const [character, setCharacter] = useState<ICharacter>(initCharacter)
 
-	const onUpdateCharacter = (character: ICharacter) => setCharacter(character)
+	const onUpdateCharacter = (character: ICharacter) => {
+		const updatedHealth = 3 + Number(character.parameters.strength)
+		console.log('updated health - ', updatedHealth)
+		setCharacter({
+			...character,
+			additionalParameters: {
+				...character.additionalParameters,
+				health: updatedHealth
+			},
+			currentHealth: updatedHealth
+		})
+	}
 
 	const onSkillUpdated = (skills: ICharacterSkills) => setCharacter({...character, skills: skills})
 
@@ -87,21 +99,36 @@ export const CharacterEditor: FC = () => {
 		}
 	};
 
+	const onDamaged = () => {
+
+		console.log('health before - ', character.currentHealth)
+
+		setCharacter(prevCharacter => ({
+			...prevCharacter,
+			currentHealth: Math.max(prevCharacter.currentHealth - 1, 0)
+		}))
+
+		console.log('health after - ', character.currentHealth)
+	}
+
 	return (
 		<div className={styles.page}>
 			<div>
 				<div className={styles.container}>
 					<img
+						onClick={onDamaged}
 						className={styles.characterImg} 
 						src={require("../../assets/character.png")} 
-						alt="picture"
 					/>
 					<div className={styles.characterInfo}>
 						<CharacterForm
 							character={character} 
 							onUpdateCharacter={onUpdateCharacter} 
 						/>
-						<CharacterStats parameters={character.parameters} />
+						<CharacterStats 
+							parameters={character.parameters}
+							health={character.currentHealth}						
+						/>
 						<CharacterSkillList 
 							character={character} 
 							onSkillUpdated={onSkillUpdated} 
